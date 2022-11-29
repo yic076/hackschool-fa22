@@ -8,7 +8,7 @@ router.get("/purchases", async (req, res) => {
     res.status(200).json({purchases});
 });
 
-router.post('/purcahses', async (req, res) => {
+router.post('/purchases', async (req, res) => {
     const {purchase} = req.body;
     const {name, description, cost, method} = purchase;
     if(!name || !description || !cost || !method){

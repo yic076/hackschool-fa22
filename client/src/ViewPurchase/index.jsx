@@ -1,5 +1,7 @@
-import React from "react";
+import React,{useEffect}from "react";
 import "./style.css";
+import API from "../API";
+import { useState } from "react";
 
 const purchaseData = [
   {
@@ -21,9 +23,18 @@ const purchaseData = [
 ]
 
 const ViewPurchase = () => {
+  const [body, setBody] = useState([]);
+
+  useEffect(() => {
+      API.getPurchase().then((response) => {
+          console.log(response);
+          setBody(response.data.purchases);
+      });
+  }, []);
+
     return (
       <div className="view-container">
-        {purchaseData.map((purchase, index) => {
+        {body.map((purchase, index) => {
           return (
             <div className="view-item">
               <h1 className="item-title">{purchase.name}</h1>
